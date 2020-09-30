@@ -31,12 +31,12 @@ public class BookingController {
 
 	
 	@PostMapping(value = "/booking/doBooking", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Booking addBooking(@RequestBody Booking booking) 
+	public ResponseEntity<String> addBooking(@RequestBody Booking booking) 
 	{
 		// This method is used for adding booking  
-		return bookingService.addBooking(booking);
+		Booking book=bookingService.addBooking(booking);
+		return new ResponseEntity<String>("Tickets booked successfully", new HttpHeaders(), HttpStatus.OK); 
 	}
-
 	@DeleteMapping("/delete/bookingId/{bookingId}")
 	public ResponseEntity<String> deletebookingById(@PathVariable("bookingId") int bookingId)
 	{
